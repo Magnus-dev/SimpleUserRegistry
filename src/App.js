@@ -4,7 +4,8 @@ import Menu from './Components/PageElements/Menu';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Home from './Components/Pages/Home';
 import NewUser from './Components/Pages/NewUser';
-import NotFound from './Components/Pages/NotFound'
+import NotFound from './Components/Pages/NotFound';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 class App extends Component{
 

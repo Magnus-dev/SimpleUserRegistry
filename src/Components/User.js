@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import { AnimateSharedLayout, motion, AnimatePresence } from "framer-motion"
 
 export default class User extends Component{
     // constructor(props){
@@ -6,12 +7,13 @@ export default class User extends Component{
     // }
     render(){
         return(
-            <div>
+            
+            <motion.li>
                 <b>{this.props.data.firstname}</b>
                 
                 <img src={this.props.data.img} />
 
-            </div>
+            </motion.li>
         );
     }
 }
