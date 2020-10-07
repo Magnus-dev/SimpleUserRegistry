@@ -1,0 +1,13 @@
+import React, {Component} from 'react';
+import { render } from 'react-dom';
+
+export default class NewUser extends Component {
+    render(){
+        return(
+            <div>
+                <h1>Add a User!</h1>
+                <p> ALL NEW</p>
+            </div>
+        );
+    }
+}
