@@ -10,9 +10,9 @@ export default class Menu extends Component {
         var active = { color: '#F0F',
         fontWeight: 'bold'}
         return(
-            <Navbar sticky="top" bg="dark" variant = "dark">
+            <Navbar sticky="top" bg="light" variant = "light">
                <NavbarBrand href="/">Smoelenboek</NavbarBrand>
-               <NavLink href="/add">Toevoegen</NavLink>
+               <NavLink href="/add" className="ml-auto">Toevoegen</NavLink>
             </Navbar>
         );
         }

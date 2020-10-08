@@ -2,14 +2,16 @@ import React, {Component} from 'react';
 import { render } from 'react-dom';
 import API from '../../lib/API';
 import User from '../User';
-import { AnimateSharedLayout, motion, AnimatePresence } from "framer-motion"
+import { AnimateSharedLayout, motion, AnimatePresence } from "framer-motion";
+import {Container, Row, Col}from "react-bootstrap";
 
 export default class Home extends Component {
     constructor(props){
         super(props);
         this.state ={
           isLoaded: false,
-          data: []
+          data: [],
+          isRow:false
         }
     }
     componentDidMount(){
@@ -28,11 +30,20 @@ export default class Home extends Component {
         if(this.state.isLoaded){
             return(
               <AnimateSharedLayout>
-                <motion.ul layout initial={{ borderRadius: 25 }}>
+                {/* <motion.ul layout initial={{ borderRadius: 25 }}> */}
+                <Container>
+                  <Row>
                   {this.state.data.map(item => (
-                    <User data={item} />
+                    
+                    <Col>
+                      <User data={item} />
+                    </Col>
+                    
                   ))}
-                </motion.ul>
+                  </Row>
+                </Container>
+                  
+                {/* </motion.ul> */}
             </AnimateSharedLayout>
                 
                 
