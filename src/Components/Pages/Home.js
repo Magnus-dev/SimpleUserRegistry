@@ -12,7 +12,7 @@ export default class Home extends Component {
         this.state ={
           isLoaded: false,
           data: [],
-          isRow:true,
+          isRow:false,
         }
     }
     componentDidMount(){

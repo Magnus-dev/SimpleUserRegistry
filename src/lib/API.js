@@ -9,10 +9,14 @@ export default class API{
           reject(error);
         });
     });
-    static postData =(url, data)=>new Promise((resolve, reject)=>{
+    static postData =( data)=>new Promise((resolve, reject)=>{
         const body = new FormData();
-        body.append('field', data.field);
-        fetch(url, {
+        body.append('firstname', data.firstname);
+        body.append('lastname', data.lastname);
+        body.append('email', data.email);
+        body.append('phone', data.phone);
+        body.append('dateOfBirth', data.dateOfBirth);
+        fetch("https://api.dev-master.ninja/reactjs/smoelenboek/post", {
             method: 'POST',
             body
         })
