@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import { render } from 'react-dom';
 import API from '../../lib/API';
-import User from '../User';
+import UserCard from '../PageElements/UserCard';
+import UserRow from '../PageElements/UserRow';
 import { AnimateSharedLayout, motion, AnimatePresence } from "framer-motion";
 import {Container, Row, Col}from "react-bootstrap";
 
@@ -11,7 +12,7 @@ export default class Home extends Component {
         this.state ={
           isLoaded: false,
           data: [],
-          isRow:false
+          isRow:true,
         }
     }
     componentDidMount(){
@@ -26,37 +27,40 @@ export default class Home extends Component {
         })
       }
     render(){
-        console.log(this.props.data)
-        if(this.state.isLoaded){
-            return(
-              <AnimateSharedLayout>
-                {/* <motion.ul layout initial={{ borderRadius: 25 }}> */}
-                <Container>
-                  <Row>
-                  {this.state.data.map(item => (
-                    
-                    <Col>
-                      <User data={item} />
-                    </Col>
-                    
-                  ))}
-                  </Row>
-                </Container>
-                  
-                {/* </motion.ul> */}
-            </AnimateSharedLayout>
-                
-                
-            );}
-        else{
-            return(
-                  <div>
-                    <h1>
-                      Loading....
-                    </h1>
-                  </div>
-                );
-          }
+      console.log(this.props.data);
+      if(this.state.isLoaded){
+        if(!this.state.isRow){
+          return(
+            <AnimateSharedLayout>
+              <Container>        
+                <Row>
+                {this.state.data.map(item => (
+                    <UserCard data={item} isRow={this.state.isRow} />
+                ))}
+                </Row>
+              </Container>
+          </AnimateSharedLayout>       
+          );}
+        if(this.state.isRow){
+          return(
+          <AnimateSharedLayout>
+              <Container>
+                {this.state.data.map(item => (
+                    <UserRow data={item} isRow={this.state.isRow} />
+                ))}
+              </Container>
+          </AnimateSharedLayout>
+          );
+        }
+      }else{
+          return(
+                <div>
+                  <h1>
+                    Loading....
+                  </h1>
+                </div>
+              );
+        }
     }
 }
 

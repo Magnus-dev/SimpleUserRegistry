@@ -1,17 +1,18 @@
 import React, {Component} from 'react';
 import { AnimateSharedLayout, motion, AnimatePresence } from "framer-motion";
-import {Card, Button, Image} from "react-bootstrap";
+import {Card, Button, Image, Col, Row} from "react-bootstrap";
 
 export default class User extends Component{
     // constructor(props){
     //     super(props);
     // }
     render(){
+
         return(
-            
-            <Card style={{ width: '18rem' }}>
-                <Image align="center" src={this.props.data.img} width ="80%"roundedCircle />
-                <Card.Body>
+            <Row>
+                <Card className="text-center" >
+                <Card.Img variant ="left" src={this.props.data.img}  />
+                <Card.Body className= "px-2">
                     <Card.Title>{this.props.data.firstname + " "+ this.props.data.lastname}</Card.Title>
                     <Card.Text>
                     {this.props.data.email}
@@ -21,6 +22,8 @@ export default class User extends Component{
                     <Button variant="primary">Show</Button>
                 </Card.Body>
                 </Card>
+            </Row>
         );
+      
     }
 }
