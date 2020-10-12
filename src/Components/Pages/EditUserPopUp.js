@@ -4,6 +4,7 @@ import 'reactjs-popup/dist/index.css';
 import {Button, Form, Col} from 'react-bootstrap';
 import API from '../../lib/API';
 
+
 export default class EditUserPopUp extends Component{
     constructor(props){
         super(props);
@@ -13,7 +14,8 @@ export default class EditUserPopUp extends Component{
             phone : props.data.phone,
             email: props.data.email,
             dateOfBirth: props.data.dateOfBirth,
-            id: props.data.id
+            id: props.data.id,
+            img: props.data.img
         };
     }
     
@@ -30,13 +32,27 @@ export default class EditUserPopUp extends Component{
         var target = event.target;
         const value = target.value;
         const id = target.id;
-        console.log(target.id);
+        console.log(value);
         this.setState({
             [id]: value
         })
     }
+    fileSelectedHandler = (event) => {
+        let file = event.target.files[0];
+        if(file){
+            const reader= new FileReader();
+            reader.onload = this._handleReaderLoaded.bind(this)
+            reader.readAsBinaryString(file)
+        }
+        
+    }
+    _handleReaderLoaded = (readerEvt)=>{
+        let binaryString = readerEvt.target.result;
+        this.setState({ img: "data:image/jpeg;base64,"+ btoa(binaryString)});
+        console.log(this.state.img)
+    }
     render(){
-        console.log(this.props.data);
+        // console.log(this.props.data);
         return(
             <Popup trigger={<Button variant="primary" >Show</Button>}
                 modal
@@ -46,7 +62,18 @@ export default class EditUserPopUp extends Component{
                 <Button className="close" variant="danger" onClick={close}>
                 &times;
                 </Button>
-
+                <Form.Row>
+                    <Form.Group as={Col} md="6" controlId="img">
+                        <Form.Label>Image</Form.Label>
+                        <Form.Control
+                        required
+                        type="file"
+                        accept = ".jpeg, .png, .jpg"
+                        onChange = {(evt) =>this.fileSelectedHandler(evt)}
+                        />
+                        <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+                    </Form.Group>
+                    </Form.Row>
                     <Form.Row>
                     <Form.Group as={Col} md="6" controlId="firstname">
                         <Form.Label>First name</Form.Label>

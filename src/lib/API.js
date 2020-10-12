@@ -15,7 +15,7 @@ export default class API{
         body.append('lastname', data.lastname);
         body.append('email', data.email);
         body.append('phone', data.phone);
-        body.append('dateOfBirth', data.dateOfBirth);
+        body.append('date_of_birth', data.dateOfBirth);
         if(data.id !== null){
           body.append('id', data.id);
         }
@@ -37,8 +37,9 @@ export default class API{
       body.append('lastname', data.lastname);
       body.append('email', data.email);
       body.append('phone', data.phone);
-      body.append('dateOfBirth', data.dateOfBirth);
+      body.append('date_of_birth', data.dateOfBirth);
       body.append('id', data.id);
+      body.append('img', data.img);
       fetch("https://api.dev-master.ninja/reactjs/smoelenboek/put/"+ data.id, {
           method: 'POST',
           body

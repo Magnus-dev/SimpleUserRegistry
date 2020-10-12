@@ -19,7 +19,7 @@ export default class Home extends Component {
 
         API.fetchData('https://api.dev-master.ninja/reactjs/smoelenboek/get')
         .then( data=>{
-          console.log(data);
+          // console.log(data);
           this.setState({data:data, isLoaded:true})
         })
         .catch(error=>{

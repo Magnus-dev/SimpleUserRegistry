@@ -12,7 +12,7 @@ export default class NewUser extends Component {
             lastname: '',
             phone : '',
             email: '',
-            dateOfBirth: ''
+            dateOfBirth: new Date()
         };
     }
     
