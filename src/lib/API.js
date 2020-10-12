@@ -16,6 +16,9 @@ export default class API{
         body.append('email', data.email);
         body.append('phone', data.phone);
         body.append('dateOfBirth', data.dateOfBirth);
+        if(data.id !== null){
+          body.append('id', data.id);
+        }
         fetch("https://api.dev-master.ninja/reactjs/smoelenboek/post", {
             method: 'POST',
             body
@@ -28,6 +31,26 @@ export default class API{
           reject(error);
         });
     });
+    static putData =( data)=>new Promise((resolve, reject)=>{
+      const body = new FormData();
+      body.append('firstname', data.firstname);
+      body.append('lastname', data.lastname);
+      body.append('email', data.email);
+      body.append('phone', data.phone);
+      body.append('dateOfBirth', data.dateOfBirth);
+      body.append('id', data.id);
+      fetch("https://api.dev-master.ninja/reactjs/smoelenboek/put/"+ data.id, {
+          method: 'POST',
+          body
+      })
+      .then(response=> response.json())
+      .then(data=>{
+        resolve(data);
+        })
+      .catch(error => {
+        reject(error);
+      });
+  });
     static deleteData =( id)=>new Promise((resolve, reject)=>{
       fetch("https://api.dev-master.ninja/reactjs/smoelenboek/delete/"+id, {
           method: 'DELETE'
