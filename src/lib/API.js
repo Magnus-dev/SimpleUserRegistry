@@ -16,6 +16,7 @@ export default class API{
         body.append('email', data.email);
         body.append('phone', data.phone);
         body.append('date_of_birth', data.dateOfBirth);
+        body.append('img', data.img);
         if(data.id !== null){
           body.append('id', data.id);
         }

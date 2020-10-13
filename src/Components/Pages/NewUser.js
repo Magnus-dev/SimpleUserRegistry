@@ -12,7 +12,8 @@ export default class NewUser extends Component {
             lastname: '',
             phone : '',
             email: '',
-            dateOfBirth: new Date()
+            dateOfBirth: new Date(),
+            img: null
         };
     }
     
@@ -34,10 +35,37 @@ export default class NewUser extends Component {
             [id]: value
         })
     }
+    fileSelectedHandler = (event) => {
+        let file = event.target.files[0];
+        if(file){
+            const reader= new FileReader();
+            reader.onload = this._handleReaderLoaded.bind(this)
+            reader.readAsBinaryString(file)
+        }
+        
+    }
+    _handleReaderLoaded = (readerEvt)=>{
+        let binaryString = readerEvt.target.result;
+        this.setState({ img: "data:image/jpeg;base64,"+ btoa(binaryString)});
+        console.log(this.state.img)
+    }
       
     render(){
     return (
         <Form noValidate onSubmit={(evt)=>this.handleSubmit(evt)}>
+
+            <Form.Row>
+                    <Form.Group as={Col} md="6" controlId="img">
+                        <Form.Label>Image</Form.Label>
+                        <Form.Control
+                        required
+                        type="file"
+                        accept = ".jpeg, .png, .jpg"
+                        onChange = {(evt) =>this.fileSelectedHandler(evt)}
+                        />
+                        <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+                    </Form.Group>
+                    </Form.Row>
             <Form.Row>
             <Form.Group as={Col} md="6" controlId="firstname">
                 <Form.Label>First name</Form.Label>

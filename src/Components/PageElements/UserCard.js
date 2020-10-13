@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import { AnimateSharedLayout, motion, AnimatePresence } from "framer-motion";
-import {Card, Button, Image, Col, Row} from "react-bootstrap";
+import {Card, Button, Col, Row} from "react-bootstrap";
 import EditUserPopUp from '../Pages/EditUserPopUp';
-
+import Image from '../PageElements/Image';
 
 export default class User extends Component{
     // constructor(props){
@@ -11,8 +11,8 @@ export default class User extends Component{
     render(){
         return(
             
-            <Card style={{ width: '18rem' }}>
-                <Image align="center" src={this.props.data.img} width ="80%"roundedCircle />
+            <Card style={{ width: '18rem' }} className="User-Card">
+                <Image align="center" src={this.props.data.img} />
                 <Card.Body>
                     <Card.Title>{this.props.data.firstname + " "+ this.props.data.lastname}</Card.Title>
                     <Card.Text>

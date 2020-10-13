@@ -3,6 +3,7 @@ import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
 import {Button, Form, Col} from 'react-bootstrap';
 import API from '../../lib/API';
+import Image from '../PageElements/Image';
 
 
 export default class EditUserPopUp extends Component{
@@ -62,6 +63,9 @@ export default class EditUserPopUp extends Component{
                 <Button className="close" variant="danger" onClick={close}>
                 &times;
                 </Button>
+                <Form.Row>
+                    <Image src={this.state.img}/>
+                </Form.Row>
                 <Form.Row>
                     <Form.Group as={Col} md="6" controlId="img">
                         <Form.Label>Image</Form.Label>
