@@ -2,7 +2,8 @@ import React, {Component} from 'react';
 import { render } from 'react-dom';
 import {Form, InputGroup, Col, Button} from 'react-bootstrap';
 import API from '../../lib/API';
-import  { Redirect } from 'react-router-dom'
+import  { Redirect } from 'react-router-dom';
+import Menu from '../PageElements/Menu';
 
 export default class NewUser extends Component {
     constructor(props){
@@ -52,8 +53,9 @@ export default class NewUser extends Component {
       
     render(){
     return (
-        <Form noValidate onSubmit={(evt)=>this.handleSubmit(evt)}>
-
+        <React.Fragment>
+            <Menu setRow={this.setRow} setCard= {this.setCard}/>
+            <Form noValidate onSubmit={(evt)=>this.handleSubmit(evt)}>
             <Form.Row>
                     <Form.Group as={Col} md="6" controlId="img">
                         <Form.Label>Image</Form.Label>
@@ -91,7 +93,7 @@ export default class NewUser extends Component {
                 />
                 <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
             </Form.Group>
-            
+
             </Form.Row>
             <Form.Row>
             <Form.Group as={Col} md="6" controlId="email">
@@ -118,7 +120,7 @@ export default class NewUser extends Component {
                 Please provide a valid phonenumber.
                 </Form.Control.Feedback>
             </Form.Group>
-            
+
             </Form.Row>
             <Form.Row>
             <Form.Group as={Col} md="6" controlId="dateOfBirth">
@@ -131,10 +133,12 @@ export default class NewUser extends Component {
                 Please provide a valid phonenumber.
                 </Form.Control.Feedback>
             </Form.Group>
-            
+
             </Form.Row>
             <Button type="submit">Submit form</Button>
-        </Form>
+            </Form>
+        </React.Fragment>
+        
         );
     }
       

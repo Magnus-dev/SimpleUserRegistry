@@ -1,68 +1,64 @@
 import React, {Component} from 'react';
 import { render } from 'react-dom';
-import API from '../../lib/API';
 import UserCard from '../PageElements/UserCard';
 import UserRow from '../PageElements/UserRow';
 import { AnimateSharedLayout, motion, AnimatePresence } from "framer-motion";
 import {Container, Row, Col}from "react-bootstrap";
+import Menu from '../PageElements/Menu';
 
 export default class Home extends Component {
     constructor(props){
         super(props);
         this.state ={
-          isLoaded: false,
-          data: [],
-          isRow:false,
+          data: this.props.data,
+          isRow: false,
         }
     }
-    componentDidMount(){
+    setRow= () =>{
+      this.setState({
+        isRow:true
+      })
+      // window.location.reload(false);
+      // console.log(this.state.isRow);
 
-        API.fetchData('https://api.dev-master.ninja/reactjs/smoelenboek/get')
-        .then( data=>{
-          // console.log(data);
-          this.setState({data:data, isLoaded:true})
-        })
-        .catch(error=>{
-          console.log(error)
-        })
-      }
+  }
+  setCard= () =>{
+    this.setState({
+      isRow:false
+    })
+    // window.location.reload(false);
+    console.log(this.state.isRow);
+  }
+   
     render(){
-      console.log(this.props.data);
-      if(this.state.isLoaded){
-        if(!this.state.isRow){
-          return(
-            <AnimateSharedLayout>
-              <Container>        
-                <Row>
-                {this.state.data.map(item => (
-                    <UserCard data={item} isRow={this.state.isRow} />
-                ))}
-                </Row>
-              </Container>
-          </AnimateSharedLayout>       
-          );}
-        if(this.state.isRow){
-          return(
-          <AnimateSharedLayout>
-              <Container>
-                {this.state.data.map(item => (
-                    <UserRow data={item} isRow={this.state.isRow} />
-                ))}
-              </Container>
-          </AnimateSharedLayout>
-          );
+      console.log(this.state.isRow);
+        return(
+          <React.Fragment>
+             <Menu setRow={this.setRow} setCard= {this.setCard}/>
+            {this.state.isRow===false?(
+                <AnimateSharedLayout>
+                  <Container>        
+                    <Row>
+                    {this.state.data.map(item => (
+                        <UserCard data={item} isRow={this.state.isRow} />
+                    ))}
+                    </Row>
+                  </Container>
+              </AnimateSharedLayout>       
+              ):(
+              <AnimateSharedLayout>
+                  <Container>
+                    {this.state.data.map(item => (
+                        <UserRow data={item} isRow={this.state.isRow} />
+                    ))}
+                  </Container>
+              </AnimateSharedLayout>
+              )
         }
-      }else{
-          return(
-                <div>
-                  <h1>
-                    Loading....
-                  </h1>
-                </div>
-              );
-        }
+        </React.Fragment>);
+      
     }
-}
+  }
 
 // function Item() {
 //   const [isOpen, setIsOpen] = useState(false);
