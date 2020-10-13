@@ -11,7 +11,7 @@ export default class Home extends Component {
         super(props);
         this.state ={
           data: this.props.data,
-          isRow: false,
+          isRow: true,
         }
     }
     setRow= () =>{

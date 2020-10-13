@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import { AnimateSharedLayout, motion, AnimatePresence } from "framer-motion";
-import {Card, Button, Image, Col, Row} from "react-bootstrap";
+import {Card, Button, Col, Row} from "react-bootstrap";
+import Image from '../PageElements/Image';
 
 export default class User extends Component{
     // constructor(props){
@@ -9,19 +10,20 @@ export default class User extends Component{
     render(){
 
         return(
-            <Row>
-                <Card className="text-center" >
-                <Card.Img variant ="left" src={this.props.data.img}  />
-                <Card.Body className= "px-2">
-                    <Card.Title>{this.props.data.firstname + " "+ this.props.data.lastname}</Card.Title>
-                    <Card.Text>
-                    {this.props.data.email}
-                    <br/>
-                    {this.props.data.phone}
-                    </Card.Text>
-                    <Button variant="primary">Show</Button>
-                </Card.Body>
-                </Card>
+            <Row className= "User-Row">
+                    <Col>
+                        <Image variant ="left" src={this.props.data.img}  />
+                    </Col>
+                    <Col>
+
+                        <b>{this.props.data.firstname + " "+ this.props.data.lastname}</b>
+                        <br/>
+                        {this.props.data.email}
+                        <br/>
+                        {this.props.data.phone}
+                        <br/>
+                        <Button variant="primary">Show</Button>
+                    </Col>
             </Row>
         );
       
