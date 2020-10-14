@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
-import {Button, Form, Col} from 'react-bootstrap';
+import {Button, Form, Col, Container, Row} from 'react-bootstrap';
 import API from '../../lib/API';
 import Image from '../PageElements/Image';
 
@@ -55,30 +55,35 @@ export default class EditUserPopUp extends Component{
     render(){
         // console.log(this.props.data);
         return(
-            <Popup trigger={<Button variant="primary" >Show</Button>}
+            <Popup trigger={<Button variant="warning" >Edit</Button>}
                 modal
                 nested>
                 {close => 
-                (<Form noValidate onSubmit={(evt)=>this.handleSubmit(evt)}>
-                <Button className="close" variant="danger" onClick={close}>
-                &times;
-                </Button>
+                (
+                <Container>
+                <Form noValidate onSubmit={(evt)=>this.handleSubmit(evt)}>
+                <Row>
+                <Col xs={4} md={4}>
+               
                 <Form.Row>
+                    <label htmlFor="upload-button">
                     <Image src={this.state.img}/>
-                </Form.Row>
-                <Form.Row>
-                    <Form.Group as={Col} md="6" controlId="img">
-                        <Form.Label>Image</Form.Label>
+                    </label>
                         <Form.Control
                         required
                         type="file"
+                        id = "upload-button"
                         accept = ".jpeg, .png, .jpg"
+                        style ={{display:'none'}}
                         onChange = {(evt) =>this.fileSelectedHandler(evt)}
                         />
-                        <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-                    </Form.Group>
-                    </Form.Row>
-                    <Form.Row>
+                </Form.Row>
+                </Col>
+                <Col  className="ml-auto">  
+                <Button className="close" variant="danger" onClick={close}>
+                &times;
+                </Button>  
+                <Form.Row>
                     <Form.Group as={Col} md="6" controlId="firstname">
                         <Form.Label>First name</Form.Label>
                         <Form.Control
@@ -90,8 +95,8 @@ export default class EditUserPopUp extends Component{
                         />
                         <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
                     </Form.Group>
-                    </Form.Row>
-                    <Form.Row>
+                </Form.Row>
+                <Form.Row>
                     <Form.Group as={Col} md="6" controlId="lastname">
                         <Form.Label>Last name</Form.Label>
                         <Form.Control
@@ -104,8 +109,8 @@ export default class EditUserPopUp extends Component{
                         <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
                     </Form.Group>
                     
-                    </Form.Row>
-                    <Form.Row>
+                </Form.Row>
+                <Form.Row>
                     <Form.Group as={Col} md="6" controlId="email">
                         <Form.Label>Email</Form.Label>
                         <Form.Control 
@@ -118,8 +123,8 @@ export default class EditUserPopUp extends Component{
                         Please provide a valid email.
                         </Form.Control.Feedback>
                     </Form.Group>
-                    </Form.Row>
-                    <Form.Row>
+                </Form.Row>
+                <Form.Row>
                     <Form.Group as={Col} md="6" controlId="phone">
                         <Form.Label>Phone</Form.Label>
                         <Form.Control 
@@ -133,8 +138,8 @@ export default class EditUserPopUp extends Component{
                         </Form.Control.Feedback>
                     </Form.Group>
                     
-                    </Form.Row>
-                    <Form.Row>
+                </Form.Row>
+                <Form.Row>
                     <Form.Group as={Col} md="6" controlId="dateOfBirth">
                         <Form.Label>Date of Birth</Form.Label>
                         <Form.Control 
@@ -148,9 +153,12 @@ export default class EditUserPopUp extends Component{
                         </Form.Control.Feedback>
                     </Form.Group>
                     
-                    </Form.Row>
+                </Form.Row>
                     <Button type="submit">Submit form</Button>
-                </Form>
+                    </Col>
+            </Row>
+            </Form>
+            </Container>  
                 )}
             </Popup>
                 

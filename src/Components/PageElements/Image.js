@@ -11,7 +11,7 @@ export default class image extends Component{
 
         return(
             
-            <Image align="center" src={this.props.src} className="App-thumbnails" roundedCircle background-size="contain" />
+            <Image align="center" src={this.props.src?this.props.src:require('./unnamed.gif')} className="App-thumbnails" roundedCircle background-size="contain" />
         );
       
     }

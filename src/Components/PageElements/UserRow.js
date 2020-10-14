@@ -1,7 +1,9 @@
 import React, {Component} from 'react';
 import { AnimateSharedLayout, motion, AnimatePresence } from "framer-motion";
 import {Card, Button, Col, Row} from "react-bootstrap";
-import Image from '../PageElements/Image';
+import Image from './Image';
+import EditUserPopUp from '../Pages/EditUserPopUp';
+import ShowUserPopUp from '../Pages/ShowUserPopUp';
 
 export default class User extends Component{
     // constructor(props){
@@ -16,13 +18,14 @@ export default class User extends Component{
                     </Col>
                     <Col>
 
-                        <b>{this.props.data.firstname + " "+ this.props.data.lastname}</b>
+                        <h2>{this.props.data.firstname + " "+ this.props.data.lastname}</h2>
+                        <h3> {this.props.data.email}</h3>
+                        <h3> {this.props.data.phone}</h3>
+                        
                         <br/>
-                        {this.props.data.email}
-                        <br/>
-                        {this.props.data.phone}
-                        <br/>
-                        <Button variant="primary">Show</Button>
+                        <ShowUserPopUp data= {this.props.data}/>
+                        <span>   </span>
+                        <EditUserPopUp data= {this.props.data}/>
                     </Col>
             </Row>
         );

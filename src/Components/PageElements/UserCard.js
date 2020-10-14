@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import { AnimateSharedLayout, motion, AnimatePresence } from "framer-motion";
 import {Card, Button, Col, Row} from "react-bootstrap";
 import EditUserPopUp from '../Pages/EditUserPopUp';
+import ShowUserPopUp from '../Pages/ShowUserPopUp';
 import Image from '../PageElements/Image';
 
 export default class User extends Component{
@@ -20,7 +21,10 @@ export default class User extends Component{
                     <br/>
                     {this.props.data.phone}
                     </Card.Text>
+                    <ShowUserPopUp data= {this.props.data}/>
+                    <span>   </span>
                     <EditUserPopUp data= {this.props.data}/>
+                    
                 </Card.Body>
                 </Card>
         );      
